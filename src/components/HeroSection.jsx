@@ -1,5 +1,6 @@
 import React from 'react'
 import HeroImg from '../assets/images/undraw_book-lover.png'
+import { NavLink } from "react-router";
 
 function HeroSection() {
   return (
@@ -12,7 +13,7 @@ function HeroSection() {
                 Borrow from thousands of books, <mark className='bg-highlightKeppel rounded-lg p-[2px]'>anywhere</mark>, <mark className='bg-highlightGolden rounded-lg p-[2px]'>anytime</mark>.
             </p>
             <div>
-                <button className='h-[60px] w-[150px] bg-highlightBrown border-b-4 border-r-4  text-textAliceBlue text-[22px] font-bold rounded-2xl m-5'>Get started</button>
+                <NavLink to="/register"><button className='h-[60px] w-[150px] bg-highlightBrown border-b-4 border-r-4  text-textAliceBlue text-[22px] font-bold rounded-2xl m-5'>Get started</button></NavLink>
             </div>
         </div>
         <div>
