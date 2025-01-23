@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
 import { FaRegUserCircle } from "react-icons/fa";
+import { PiSignOutBold } from "react-icons/pi";
+import { useUser } from "../lib/context/user";
 import { CiMenuBurger, CiMenuFries } from "react-icons/ci";
 import { NavLink } from "react-router";
 import logo from "../assets/images/Library-logo.png"
 
 function Navbar() {
+
+    const user = useUser();
+
     const [isOpen, setIsOpen] = useState(false)
 
     const toggleNavbar = () => {
@@ -35,15 +40,24 @@ function Navbar() {
             <h1 className="text-lg m-2 cursor-pointer text-textAliceBlue">Home</h1>
             <h1 className="text-lg m-2 cursor-pointer text-textAliceBlue">About us</h1>
             <h1 className="text-lg m-2 cursor-pointer text-textAliceBlue">Contact</h1>
-            <NavLink to="/login"><button className='h-[40px] w-[120px] border-2 border-highlightBrown text-textAliceBlue text-[20px] font-bold rounded-2xl m-5'>Login</button></NavLink>
-            <NavLink to="/register"><button className='h-[40px] w-[120px] bg-highlightBrown text-textAliceBlue text-[20px] font-bold rounded-2xl'>Register</button></NavLink>
+            {user.current ? null : <div>
+                <NavLink to="/login"><button className='h-[40px] w-[120px] border-2 border-highlightBrown text-textAliceBlue text-[20px] font-bold rounded-2xl m-5'>Login</button></NavLink>
+                <NavLink to="/register"><button className='h-[40px] w-[120px] bg-highlightBrown text-textAliceBlue text-[20px] font-bold rounded-2xl'>Register</button></NavLink>
+            </div>}     
         </div>
     )}
-
+    {user.current ? (
+        <div className='flex'>
+            <FaRegUserCircle size={30} className="mr-10 md:mr-5 text-textAliceBlue" />
+            <button type="button" onClick={() => user.logout()}>
+                <PiSignOutBold size={30} className="mr-10 md:mr-5 text-highlightTomato"/>
+            </button>
+        </div>
+    ) : (
     <div className="hidden md:flex items-center">
         <NavLink to="/login"><button className='h-[40px] w-[120px] border-2 border-highlightBrown text-textAliceBlue text-[20px] font-bold rounded-2xl m-5'>Login</button></NavLink>
         <NavLink to="/register"><button className='h-[40px] w-[120px] bg-highlightBrown text-textAliceBlue text-[20px] font-bold rounded-2xl mr-5'>Register</button></NavLink>
-    </div>
+    </div> )}
 </div>
 
   )

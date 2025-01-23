@@ -1,8 +1,15 @@
-import React from 'react'
+import { useState } from "react";
+import { useUser } from "../lib/context/user";
 import { NavLink } from "react-router";
 import { IoBookOutline } from "react-icons/io5";
 
 function Login() {
+
+  const user = useUser();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <div className='w-screen h-screen flex justify-center items-center'>
       <div className='h-[500px] w-[450px]'>
@@ -19,6 +26,10 @@ function Login() {
             type="email"
             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
             placeholder="your@email.com"
+            value={email}
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
           />
         </div>
         <div>
@@ -27,12 +38,19 @@ function Login() {
             type="password"
             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
             placeholder="••••••••"
+            value={password}
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
           />
         </div>
         <div>
           <p className='text-highlightBrown'>Forgot your password?</p>
         </div>
-        <button className='bg-highlightBrown w-full h-[40px] rounded-lg mt-3 text-neutralBeige font-bold'>Sign in to your account</button>
+        <button 
+        className='bg-highlightBrown w-full h-[40px] rounded-lg mt-3 text-neutralBeige font-bold'
+        onClick={() => user.login(email, password)}
+          >Sign in to your account</button>
       </div>
     </div>
   )

@@ -1,15 +1,16 @@
 import React from "react";
 
-const BookCard = ({ coverColor = "#CAD7DB", title, genre, className }) => {
+const BookCard = ({ coverColor = "#CAD7DB", title, genre, cover, className }) => {
   return (
     <div
-      className={`w-[100px] h-[150px] shadow-lg rounded-lg ${className}`}
+      className={` relative w-[100px] h-[125px] rounded-lg ${className}`}
     >
+      <img src={cover} alt="" className="absolute left-2 w-[90px] h-[110px]"/>
       <svg
         preserveAspectRatio="none"
         fill="none"
-        width="75px"
-        height="100px"
+        width="100px"
+        height="125px"
         viewBox="0 0 143 199"
         xmlns="http://www.w3.org/2000/svg"
         className="flex"
@@ -36,12 +37,6 @@ const BookCard = ({ coverColor = "#CAD7DB", title, genre, className }) => {
         />
         {/* Other SVG Paths */}
       </svg>
-
-      {/* Book Details */}
-      <div className=" text-white">
-        <h3 className="text-lg font-bold">{title}</h3>
-        <p className="text-sm text-gray-300">{genre}</p>
-      </div>
     </div>
   );
 };

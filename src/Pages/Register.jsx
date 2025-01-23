@@ -1,8 +1,17 @@
-import React from 'react'
+import { useState } from "react";
+import { useUser } from "../lib/context/user";
 import { IoBookOutline } from "react-icons/io5";
 import { NavLink } from "react-router";
 
 function Register() {
+
+  const user = useUser();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [phoneNum, setPhoneNum] = useState("");
+
   return (
     <div className='w-screen h-screen flex justify-center items-center'>
       <div className='h-[500px] w-[450px]'>
@@ -19,6 +28,10 @@ function Register() {
             type="text"
             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
             placeholder="Full name"
+            value={name}
+            onChange={(event) => {
+              setName(event.target.value);
+            }}
           />
         </div>
         <div className='mb-2 mt-2'>
@@ -27,6 +40,10 @@ function Register() {
             type="email"
             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
             placeholder="your@email.com"
+            value={email}
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
           />
         </div>
         <div className='mb-2 mt-2'>
@@ -35,6 +52,10 @@ function Register() {
             type="number"
             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
             placeholder="Phone number"
+            value={phoneNum}
+            onChange={(event) => {
+              setPhoneNum(event.target.value);
+            }}
           />
         </div>
         <div>
@@ -43,9 +64,16 @@ function Register() {
             type="password"
             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
             placeholder="••••••••"
+            value={password}
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
           />
         </div>
-        <button className='bg-highlightBrown w-full h-[40px] rounded-lg mt-3 text-neutralBeige font-bold'>Create your account</button>
+        <button 
+          className='bg-highlightBrown w-full h-[40px] rounded-lg mt-3 text-neutralBeige font-bold'
+          onClick={() => user.register(email, password, name, phoneNum)}  
+        >Create your account</button>
       </div>
     </div>
   )

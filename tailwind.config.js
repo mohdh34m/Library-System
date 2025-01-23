@@ -14,6 +14,7 @@ export default {
       highlightGolden: '#ffb400',
       highlightKeppel: '#37BFA8',
       highlightGray: '#bbb9bc',
+      highlightTomato: '#EF6351',
       textAliceBlue: '#E1E8F0',
     },
   },
