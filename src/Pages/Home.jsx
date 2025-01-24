@@ -2,10 +2,13 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import { useBooks } from "../lib/context/books";
 import Book from '../BookCard'
+import { useNavigate } from 'react-router';
 
 function Home() {
 
     const books = useBooks();
+
+    const navigate = useNavigate();
 
     const handleSearch = (e) => {
         const query = e.target.value;
@@ -50,7 +53,7 @@ function Home() {
                     
                     <div className='w-[1000px] flex flex-wrap justify-center'>
                         {books.current.map((book) => (
-                            <div key={book.$id} className='w-[200px] h-[200px] m-5 flex flex-col justify-center items-center'>
+                            <div key={book.$id} className='w-[200px] h-[200px] m-5 flex flex-col justify-center items-center cursor-pointer' onClick={() => navigate(`/books/${book.$id}`)}>
                                 <Book key={book.$id} coverColor={book.color} cover={book.cover}/>
                                 <h1 className='text-[15px] font-bold text-center mt-2 text-neutralBeige'>{book.title}</h1>
                                 <p className='font-bold text-neutralDun'>By <span className='text-textAliceBlue'>{book.author}</span></p>

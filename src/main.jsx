@@ -8,7 +8,7 @@ import App from './App.jsx'
 import Login from './Pages/Login.jsx'
 import Register from './Pages/Register.jsx'
 import NotFound from './Pages/NotFound.jsx';
-import Home from './Pages/Home.jsx';
+import BookDetails from './Pages/BookDetails.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -17,6 +17,7 @@ createRoot(document.getElementById('root')).render(
         <BrowserRouter>
           <Routes>
             <Route index element={<App />} />
+            <Route path="/books/:id" element={<BookDetails />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path='*' element={<NotFound />} />
