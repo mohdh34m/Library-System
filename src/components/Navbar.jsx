@@ -21,9 +21,9 @@ function Navbar() {
     <div className="flex ml-5 flex-wrap items-center">
 
         <div className="hidden md:flex text-[20px] font-bold">
-            <h1 className="m-2 cursor-pointer text-textAliceBlue">Home</h1>
-            <h1 className="m-2 cursor-pointer text-textAliceBlue">About us</h1>
-            <h1 className="m-2 cursor-pointer text-textAliceBlue">Contact</h1>
+            <NavLink to="/" className="m-2 cursor-pointer text-textAliceBlue">Home</NavLink>
+            <NavLink to="/" className="m-2 cursor-pointer text-textAliceBlue">About us</NavLink>
+            <NavLink to="/" className="m-2 cursor-pointer text-textAliceBlue">Contact</NavLink>
         </div>
 
         <div className="flex md:hidden">
@@ -37,9 +37,9 @@ function Navbar() {
     </div>
     {isOpen && (
         <div className="absolute top-[50px] left-0 w-full bg-primaryBlue flex flex-col items-center py-4 z-10 animate-slide-down">
-            <h1 className="text-lg m-2 cursor-pointer text-textAliceBlue">Home</h1>
-            <h1 className="text-lg m-2 cursor-pointer text-textAliceBlue">About us</h1>
-            <h1 className="text-lg m-2 cursor-pointer text-textAliceBlue">Contact</h1>
+            <NavLink to="/" className="text-lg m-2 cursor-pointer text-textAliceBlue">Home</NavLink>
+            <NavLink to="/" className="text-lg m-2 cursor-pointer text-textAliceBlue">About us</NavLink>
+            <NavLink to="/" className="text-lg m-2 cursor-pointer text-textAliceBlue">Contact</NavLink>
             {user.current ? null : <div>
                 <NavLink to="/login"><button className='h-[40px] w-[120px] border-2 border-highlightBrown text-textAliceBlue text-[20px] font-bold rounded-2xl m-5'>Login</button></NavLink>
                 <NavLink to="/register"><button className='h-[40px] w-[120px] bg-highlightBrown text-textAliceBlue text-[20px] font-bold rounded-2xl'>Register</button></NavLink>
