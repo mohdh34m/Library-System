@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { databases } from "../appwrite";
 import { ID, Query } from "appwrite";
 
-export const BOOKS_DATABASE_ID = import.meta.env.VITE_BOOKS_DATABASE_ID; // Replace with your database ID
+export const BOOKS_DATABASE_ID = import.meta.env.VITE_DATABASE_ID; // Replace with your database ID
 export const BOOKS_COLLECTION_ID = import.meta.env.VITE_BOOKS_COLLECTION_ID; // Replace with your collection ID
 
 

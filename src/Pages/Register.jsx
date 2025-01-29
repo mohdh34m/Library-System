@@ -11,6 +11,8 @@ function Register() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [phoneNum, setPhoneNum] = useState("");
+  const [studentId, setStudentId] = useState("");
+  const [idCard, setidCard] = useState()
 
   return (
     <div className='w-screen h-screen flex justify-center items-center'>
@@ -58,6 +60,18 @@ function Register() {
             }}
           />
         </div>
+        <div className='mb-2 mt-2'>
+          <label class="block text-lg font-medium text-gray-700 mb-1 ml-2">Student ID</label>
+          <input
+            type="number"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
+            placeholder="Student ID"
+            value={studentId}
+            onChange={(event) => 
+              setStudentId(event.target.value)
+            }
+          />
+        </div>
         <div>
           <label class="block text-lg font-medium text-gray-700 mb-1 ml-2">Password</label>
           <input
@@ -70,9 +84,16 @@ function Register() {
             }}
           />
         </div>
+        <input 
+        type="file" 
+        accept="image/png, image/jpeg, image/jpg"
+        onChange={(e) => 
+          setidCard(e.target.files[0])
+        }
+      />
         <button 
           className='bg-highlightBrown w-full h-[40px] rounded-lg mt-3 text-neutralBeige font-bold'
-          onClick={() => user.register(email, password, name, phoneNum)}  
+          onClick={() => user.register(email, password, name, phoneNum, studentId, idCard)}  
         >Create your account</button>
       </div>
     </div>
