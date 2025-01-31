@@ -20,12 +20,12 @@ function BookDetails() {
 
   const borrowBook = async (bookID, userID) => {
     try {
-      const book = await databases.getDocument(import.meta.env.VITE_BOOKS_DATABASE_ID, import.meta.env.VITE_BOOKS_COLLECTION_ID, bookID);
+      const book = await databases.getDocument(import.meta.env.VITE_DATABASE_ID, import.meta.env.VITE_BOOKS_COLLECTION_ID, bookID);
       if(book.available_copies <= 0){
         return alert("No copies available")
       }
 
-      const borrowedBook = await databases.listDocuments(import.meta.env.VITE_BORROW_DATABASE_ID, import.meta.env.VITE_BORROW_COLLECTION_ID, [
+      const borrowedBook = await databases.listDocuments(import.meta.env.VITE_DATABASE_ID, import.meta.env.VITE_BORROW_COLLECTION_ID, [
         Query.equal("user_id", [`${userID.$id}`]),
         Query.equal("book_id", [`${bookID}`]),
         Query.equal("status", "borrowed")
@@ -34,14 +34,14 @@ function BookDetails() {
         return alert("You already have this book borrowed")
       }
       
-      await databases.updateDocument(import.meta.env.VITE_BOOKS_DATABASE_ID, import.meta.env.VITE_BOOKS_COLLECTION_ID, bookID,{
+      await databases.updateDocument(import.meta.env.VITE_DATABASE_ID, import.meta.env.VITE_BOOKS_COLLECTION_ID, bookID,{
         available_copies: book.available_copies - 1
       })
 
       setBook(prev => ({ ...prev, available_copies: prev.available_copies - 1 }));
 
       await databases.createDocument(
-        import.meta.env.VITE_BORROW_DATABASE_ID,
+        import.meta.env.VITE_DATABASE_ID,
         import.meta.env.VITE_BORROW_COLLECTION_ID,
         ID.unique(),
         {

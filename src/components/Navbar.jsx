@@ -48,7 +48,7 @@ function Navbar() {
     )}
     {user.current ? (
         <div className='flex'>
-            <FaRegUserCircle size={30} className="mr-10 md:mr-5 text-textAliceBlue" />
+            <NavLink to="/profile"><FaRegUserCircle size={30} className="mr-10 md:mr-5 text-textAliceBlue" /></NavLink>
             <button type="button" onClick={() => user.logout()}>
                 <PiSignOutBold size={30} className="mr-10 md:mr-5 text-highlightTomato"/>
             </button>
