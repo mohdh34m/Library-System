@@ -96,7 +96,7 @@ function Profile() {
                         <img
                             src={userProfile?.id_card_url}
                             alt="ID Card"
-                            className='mt-2 max-w-[400px] rounded-lg border-2 border-highlightBrown'
+                            className='mt-2 max-w-[400px] max-h-[270px] rounded-lg border-2 border-highlightBrown'
                         />
                     </div>
                     {userProfile?.status ? (

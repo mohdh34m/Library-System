@@ -33,12 +33,7 @@ export function UserProvider(props) {
       const uploadedFile = await storage.createFile(
         import.meta.env.VITE_STORAGE_BUCKET_ID,
         ID.unique(),
-        file,
-        [
-          Permission.read(Role.user(currentUser.$id)),
-          Permission.write(Role.user(currentUser.$id)),
-          Permission.delete(Role.user(currentUser.$id))
-        ]
+        file
       );
 
       await databases.createDocument(
@@ -53,12 +48,8 @@ export function UserProvider(props) {
           id_card: uploadedFile.$id,
           email: email,
           phone_num: phoneNum,
-        },
-        [
-          Permission.read(Role.user(currentUser.$id)),
-          Permission.update(Role.user(currentUser.$id)),
-          Permission.delete(Role.user(currentUser.$id))
-        ]
+          role: "User",
+        }
       );
 
       window.location.replace("/");

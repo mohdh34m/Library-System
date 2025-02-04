@@ -3,12 +3,14 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { PiSignOutBold } from "react-icons/pi";
 import { useUser } from "../lib/context/user";
 import { CiMenuBurger, CiMenuFries } from "react-icons/ci";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import logo from "../assets/images/Library-logo.png"
 
 function Navbar() {
 
     const user = useUser();
+
+    const navigate = useNavigate()
 
     const [isOpen, setIsOpen] = useState(false)
 
@@ -49,7 +51,7 @@ function Navbar() {
     {user.current ? (
         <div className='flex'>
             <NavLink to="/profile"><FaRegUserCircle size={30} className="mr-10 md:mr-5 text-textAliceBlue" /></NavLink>
-            <button type="button" onClick={() => user.logout()}>
+            <button type="button" onClick={() => {user.logout(); navigate("/")}}>
                 <PiSignOutBold size={30} className="mr-10 md:mr-5 text-highlightTomato"/>
             </button>
         </div>

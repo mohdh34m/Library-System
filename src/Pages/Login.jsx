@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useUser } from "../lib/context/user";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { IoBookOutline } from "react-icons/io5";
 
 function Login() {
 
   const user = useUser();
+
+  const navigate = useNavigate()
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -49,7 +51,7 @@ function Login() {
         </div>
         <button 
         className='bg-highlightBrown w-full h-[40px] rounded-lg mt-3 text-neutralBeige font-bold'
-        onClick={() => user.login(email, password)}
+        onClick={() => {user.login(email, password); navigate("/")}}
           >Sign in to your account</button>
       </div>
     </div>
