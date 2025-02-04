@@ -20,6 +20,12 @@ function BookDetails() {
 
   const borrowBook = async (bookID, userID) => {
     try {
+      const user = await databases.listDocuments(import.meta.env.VITE_DATABASE_ID, import.meta.env.VITE_USERS_COLLECTION_ID, [
+        Query.equal("user_id", [`${userID.$id}`])
+      ]);
+      if(!user?.documents[0].status){
+        return alert("You must be verified to borrow a book");
+      }
       const book = await databases.getDocument(import.meta.env.VITE_DATABASE_ID, import.meta.env.VITE_BOOKS_COLLECTION_ID, bookID);
       if(book.available_copies <= 0){
         return alert("No copies available")
